@@ -1,0 +1,26 @@
+services:
+  postgres-db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: nikitaryabchikov
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: taskmanager
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0.7
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./config/keycloak/import:/opt/keycloak/data/import
+    ports:
+      - "8082:8080"
+    command: start-dev --import-realm
+
+volumes:
+  postgres_data:
