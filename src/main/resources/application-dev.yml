@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskmanager
+    username: nikitaryabchikov
+    password: password
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/task-management-system
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: task-app
+            client-secret: 0mbf8DYy7zkE2MmqwfJiRpETvTbM3g1U
+            scope:
+              - openid
+              - microprofile-jwt
+logging:
+  level:
+    root: info
+    ru.effectivemobile.task_management_system.controller.TaskController: debug
+    ru.effectivemobile.task_management_system.controller.CommentController: debug

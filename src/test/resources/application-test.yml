@@ -1,0 +1,6 @@
+spring:
+  datasource:
+#    url: jdbc:tc:postgresql:15.1-alpine://comment-service
+    url: jdbc:tc:postgresql:15.1-alpine://smart-management-system
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master-test.yaml
